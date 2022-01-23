@@ -1,0 +1,24 @@
+<!-- notification template -->
+{if $notification_header|default:'' == "error"}
+<div class="alert alert-danger alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>{$notification_header|upper} :</strong> {$notification_message} </p>
+    {$notification_error}
+    <div class="clear"></div>
+</div>
+{elseif $notification_header|default:'' == "warning"}
+<div class="alert alert-warning">
+    <p><strong>{$notification_header|upper} :</strong> {$notification_message} </p>
+    {$notification_error}
+    <div class="clear"></div>
+</div>
+{elseif $notification_header|default:'' == "success"}
+<div class="alert alert-success alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>{$notification_header|upper} :</strong> {$notification_message} </p>
+    {$notification_error}
+    <div class="clear"></div>
+</div>
+{else}
+{/if}
+<!-- End of notification template -->

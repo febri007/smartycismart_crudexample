@@ -1,0 +1,59 @@
+{if $login_st|is_array eq false} {if $login_st|default:'' eq 'error'}
+<div class="alert alert-danger alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>Your account is not found</strong>, Please Try Again or contact your administrator</p>
+    <div class="clear"></div>
+</div>
+{elseif $login_st|default:'' eq 'locked'}
+<div class="alert alert-danger alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>Your account has been locked</strong>, Please Try Again or contact your administrator</p>
+    <div class="clear"></div>
+</div>
+{else}
+<div class="alert alert-warning alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>Please Login First</strong>, to acces this application!</p>
+    <div class="clear"></div>
+</div>
+{/if}
+<form action="{$config->site_url('login/operatorlogin/login_process')}" method="post">
+    <input type="hidden" name="{$csrf.name|default:''}" value="{$csrf.hash|default:''}" />
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Username" name="username" autofocus="" autocomplete="off" maxlength="30" required="" />
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="Password" name="pass" autofocus="" autocomplete="off" maxlength="300" required="" />
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8"></div>
+        <!-- /.col -->
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </div>
+        <!-- /.col -->
+    </div>
+</form>
+
+{else}
+<div class="alert alert-info">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <p><strong>Info</strong>, You has log in.</p>
+</div>
+<div class="alert alert-default text-center">
+    <p><a href="{$config->site_url($login_st.default_page)}">Back to Dashboard</a></p>
+</div>
+{/if}
